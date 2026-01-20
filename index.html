@@ -148,7 +148,7 @@ const SHEETS_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMOXxCgbTiCkB6YKsJiI59OCt_bUvU5XyCEsmhujItFUTdLDmw9_fuOYnLbbOGVVCmQsgbTXcWsw4D/pub?output=csv';
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycby9-7tcMDVY1ShsVN4nbxfEuumAqsxLITXLqQ2bZN0k46zAfY0TD4K6VzdXGOs1FtL2/exec';
+  'https://script.google.com/macros/s/AKfycbx9ib0NdOgV4NTL6MBbyboFaVvoK4GHn571TRvSOYFaR7XYGua6_HhhXJ5XZjoJt1xB/exec';
 
 /* =========================
    CARREGAR PRESENTES
@@ -190,7 +190,7 @@ fetch(SHEETS_URL)
 
       btn.disabled = !ativo;
 
-      btn.onclick = () => comprarPresente(${data.nome});
+      btn.onclick = () => comprarPresente(data);
 
       card.appendChild(btn);
       giftsContainer.appendChild(card);
@@ -204,7 +204,7 @@ fetch(SHEETS_URL)
    COMPRAR PRESENTE
 ========================= */
 
-function comprarPresente(id) {
+function comprarPresente(data) {
   const pessoa = prompt('Digite seu nome:');
   if (!pessoa) return;
 
@@ -214,7 +214,7 @@ function comprarPresente(id) {
   const url =
     API_URL +
     '?action=create-payment' +
-    '&id=' + encodeURIComponent(id) +
+    '&id=' + encodeURIComponent(data.id) +
     '&pessoa=' + encodeURIComponent(pessoa) +
     '&mensagem=' + encodeURIComponent(mensagem);
 
