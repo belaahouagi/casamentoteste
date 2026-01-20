@@ -187,29 +187,18 @@ function comprarPresente(data) {
   const pessoa = prompt('Digite seu nome:');
   if (!pessoa) return;
 
-  const mensagem = prompt('Deixe uma mensagem para os noivos (opcional):') || '';
+  const mensagem = prompt('Mensagem para os noivos (opcional):') || '';
 
-  fetch(`${API_URL}?action=create-payment`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      id: data.id,
-      pessoa,
-      mensagem
-    })
-  })
-    .then(res => res.json())
-    .then(resp => {
-      if (resp.checkoutUrl) {
-        window.location.href = resp.checkoutUrl;
-      } else {
-        alert('Erro ao criar pagamento');
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Erro ao conectar com o pagamento');
-    });
+  const url =
+    `${API_URL}?action=create-payment` +
+    `&id=${encodeURIComponent(data.id)}` +
+    `&pessoa=${encodeURIComponent(pessoa)}` +
+    `&mensagem=${encodeURIComponent(mensagem)}`;
+
+  window.location.href = url;
+}
+
+
 }
 </script>
 </body>
