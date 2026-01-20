@@ -1,0 +1,432 @@
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: oklch(0.99 0.001 0);
+    color: oklch(0.235 0.015 65);
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+#root {
+    width: 100%;
+}
+
+/* Header e Navbar */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: oklab(0.999994 0.0000455678 0.0000200868 / 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar-brand {
+    font-size: 18px;
+    font-weight: 600;
+    color: oklch(0.235 0.015 65);
+}
+
+.brand-text {
+    font-family: "Bryndan Write", cursive;
+    font-size: 20px;
+    color: oklch(0.278 0.033 256.848);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-button {
+    background-color: transparent;
+    color: oklch(0.235 0.015 65);
+    border: none;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Section */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 60px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero-title {
+    font-family: "Bryndan Write", cursive;
+    font-size: 60px;
+    font-weight: 700;
+    color: oklch(0.278 0.033 256.848);
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.ampersand {
+    color: oklch(0.546 0.245 262.881);
+    font-style: italic;
+}
+
+.hero-date {
+    color: oklch(0.546 0.245 262.881);
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.hero-text {
+    color: oklch(0.235 0.015 65);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.hero-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 300px;
+}
+
+.heart-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-title {
+    font-family: "Bryndan Write", cursive;
+    font-size: 28px;
+    color: oklch(0.278 0.033 256.848);
+    margin-bottom: 12px;
+}
+
+.card-date {
+    color: oklch(0.546 0.245 262.881);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+}
+
+.btn-primary {
+    background-color: oklch(0.546 0.245 262.881);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: oklch(0.480 0.220 262.881);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: oklch(0.546 0.245 262.881);
+    border: 2px solid oklch(0.546 0.245 262.881);
+}
+
+.btn-secondary:hover {
+    background-color: oklch(0.546 0.245 262.881);
+    color: white;
+}
+
+/* Sections */
+.section {
+    padding: 60px 24px;
+    background-color: oklch(0.99 0.001 0);
+}
+
+.section:nth-child(odd) {
+    background-color: oklch(0.98 0.002 0);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: "Bryndan Write", cursive;
+    font-size: 36px;
+    font-weight: 700;
+    color: oklch(0.278 0.033 256.848);
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-text {
+    color: oklch(0.235 0.015 65);
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 32px;
+}
+
+/* Details Grid */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.detail-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.detail-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.detail-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: oklch(0.235 0.015 65);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 15px;
+    color: oklch(0.278 0.033 256.848);
+    margin: 0;
+}
+
+/* Specific Sections */
+.ceremony-section {
+    background-color: oklch(0.98 0.002 0);
+}
+
+.reception-section {
+    background-color: oklch(0.99 0.001 0);
+}
+
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 por linha */
+    gap: 24px;
+    margin-top: 32px;
+}
+
+@media (max-width: 1024px) {
+    .gifts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gifts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.gift-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gift-image {
+    width: 100%;
+    height: 200px;              /* 🔒 tamanho fixo */
+    object-fit: cover;          /* 🔥 mantém proporção */
+    border-radius: 10px;
+}
+
+.gift-title {
+    margin: 12px 0 6px;
+    font-size: 1.1rem;
+}
+
+.gift-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.gift-price {
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.gift-card button {
+    margin-top: auto;
+}
+
+
+
+.rsvp-section {
+    background-color: oklch(0.99 0.001 0);
+    text-align: center;
+}
+
+.rsvp-section .btn {
+    margin-top: 16px;
+}
+
+.messages-section {
+    background-color: oklch(0.98 0.002 0);
+    text-align: center;
+}
+
+.messages-section .btn {
+    margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 16px;
+    }
+
+    .hero-title {
+        font-size: 40px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 12px 16px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section {
+        padding: 40px 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .hero-card {
+        padding: 24px;
+    }
+
+    .card-title {
+        font-size: 22px;
+    }
+
+    .detail-card {
+        padding: 16px;
+    }
+
+
+
+
+}
