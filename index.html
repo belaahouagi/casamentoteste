@@ -214,7 +214,7 @@ function comprarPresente(data) {
   const url =
     API_URL +
     '?action=create-payment' +
-    '&id=' + encodeURIComponent(data.nome) +
+    '&id=' + encodeURIComponent(data.id) +
     '&pessoa=' + encodeURIComponent(pessoa) +
     '&mensagem=' + encodeURIComponent(mensagem);
 
@@ -225,3 +225,4 @@ function comprarPresente(data) {
 </script>
 </body>
 </html>
+
