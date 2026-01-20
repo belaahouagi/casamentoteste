@@ -140,8 +140,19 @@
     </div>
 
 <script>
-const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMOXxCgbTiCkB6YKsJiI59OCt_bUvU5XyCEsmhujItFUTdLDmw9_fuOYnLbbOGVVCmQsgbTXcWsw4D/pub?output=csv';
-const API_URL = 'https://script.google.com/macros/s/AKfycby9-7tcMDVY1ShsVN4nbxfEuumAqsxLITXLqQ2bZN0k46zAfY0TD4K6VzdXGOs1FtL2/exec';
+/* =========================
+   CONFIGURAÇÕES
+========================= */
+
+const SHEETS_URL =
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMOXxCgbTiCkB6YKsJiI59OCt_bUvU5XyCEsmhujItFUTdLDmw9_fuOYnLbbOGVVCmQsgbTXcWsw4D/pub?output=csv';
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycby9-7tcMDVY1ShsVN4nbxfEuumAqsxLITXLqQ2bZN0k46zAfY0TD4K6VzdXGOs1FtL2/exec';
+
+/* =========================
+   CARREGAR PRESENTES
+========================= */
 
 fetch(SHEETS_URL)
   .then(res => res.text())
@@ -150,6 +161,7 @@ fetch(SHEETS_URL)
     const headers = lines.shift().split(',');
 
     const giftsContainer = document.getElementById('gifts-list');
+    giftsContainer.innerHTML = '';
 
     lines.forEach(line => {
       const values = line.split(',');
@@ -160,45 +172,55 @@ fetch(SHEETS_URL)
 
       const ativo = data.ativo === 'TRUE';
 
-      const giftCard = document.createElement('div');
-      giftCard.className = 'gift-card';
+      const card = document.createElement('div');
+      card.className = 'gift-card';
+
+      card.innerHTML = `
+        <img src="images/${data.imagem}" class="gift-image" alt="${data.nome}">
+        <h3 class="gift-title">${data.nome}</h3>
+        <p class="gift-description">${data.descricao}</p>
+        <p class="gift-price">R$ ${parseFloat(data.preco).toFixed(2)}</p>
+      `;
 
       const btn = document.createElement('button');
       btn.className = 'btn btn-primary';
-      btn.textContent = ativo ? 'Comprar este presente' : 'Presente indisponível';
+      btn.textContent = ativo
+        ? 'Comprar este presente'
+        : 'Presente indisponível';
+
       btn.disabled = !ativo;
 
       btn.onclick = () => comprarPresente(data);
 
-      giftCard.innerHTML = `
-        <img src="images/${data.imagem}" class="gift-image">
-        <h3>${data.nome}</h3>
-        <p>${data.descricao}</p>
-        <p>R$ ${parseFloat(data.preco).toFixed(2)}</p>
-      `;
-
-      giftCard.appendChild(btn);
-      giftsContainer.appendChild(giftCard);
+      card.appendChild(btn);
+      giftsContainer.appendChild(card);
     });
   })
-  .catch(err => console.error(err));
+  .catch(err => {
+    console.error('Erro ao carregar presentes:', err);
+  });
+
+/* =========================
+   COMPRAR PRESENTE
+========================= */
 
 function comprarPresente(data) {
   const pessoa = prompt('Digite seu nome:');
   if (!pessoa) return;
 
-  const mensagem = prompt('Mensagem para os noivos (opcional):') || '';
+  const mensagem =
+    prompt('Deixe uma mensagem para os noivos (opcional):') || '';
 
   const url =
-    `${API_URL}?action=create-payment` +
-    `&id=${encodeURIComponent(data.id)}` +
-    `&pessoa=${encodeURIComponent(pessoa)}` +
-    `&mensagem=${encodeURIComponent(mensagem)}`;
+    API_URL +
+    '?action=create-payment' +
+    '&id=' + encodeURIComponent(data.id) +
+    '&pessoa=' + encodeURIComponent(pessoa) +
+    '&mensagem=' + encodeURIComponent(mensagem);
 
+  // redireciona direto para o Apps Script
+  // que cria o pagamento e manda para o Mercado Pago
   window.location.href = url;
-}
-
-
 }
 </script>
 </body>
