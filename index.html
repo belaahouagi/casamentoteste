@@ -170,6 +170,8 @@ fetch(SHEETS_URL)
         headers.map((h, i) => [h.trim(), values[i]?.trim()])
       );
 
+        console.log(data);
+
       const ativo = data.ativo === 'TRUE';
 
       const card = document.createElement('div');
@@ -225,4 +227,5 @@ function comprarPresente(data) {
 </script>
 </body>
 </html>
+
 
