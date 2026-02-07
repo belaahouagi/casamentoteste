@@ -206,26 +206,60 @@ fetch(SHEETS_URL)
    COMPRAR PRESENTE
 ========================= */
 
-function comprarPresente(data) {
-  const pessoa = prompt('Digite seu nome:');
-  if (!pessoa) return;
+let presenteSelecionado = null;
 
+function comprarPresente(data) {
+  presenteSelecionado = data;
+  document.getElementById('popupPresente').style.display = 'flex';
+}
+
+function fecharPopup() {
+  document.getElementById('popupPresente').style.display = 'none';
+}
+
+function enviarPresente() {
+  const pessoa = document.getElementById('nomePessoa').value.trim();
   const mensagem =
-    prompt('Deixe uma mensagem para os noivos (opcional):') || '';
+    document.getElementById('mensagemPessoa').value.trim();
+
+  if (!pessoa) {
+    alert('Por favor, digite seu nome');
+    return;
+  }
 
   const url =
     API_URL +
     '?action=create-payment' +
-    '&id=' + encodeURIComponent(data.id) +
+    '&id=' + encodeURIComponent(presenteSelecionado.id) +
     '&pessoa=' + encodeURIComponent(pessoa) +
     '&mensagem=' + encodeURIComponent(mensagem);
 
-  // redireciona direto para o Apps Script
-  // que cria o pagamento e manda para o Mercado Pago
   window.location.href = url;
 }
 </script>
+
+    <div id="popupPresente" class="popup-overlay">
+  <div class="popup">
+    <h2>Comprar presente 🎁</h2>
+
+    <label>
+      Seu nome
+      <input type="text" id="nomePessoa" placeholder="Digite seu nome" />
+    </label>
+
+    <label>
+      Mensagem para os noivos (opcional)
+      <textarea id="mensagemPessoa" placeholder="Escreva sua mensagem"></textarea>
+    </label>
+
+    <div class="popup-actions">
+      <button onclick="fecharPopup()">Cancelar</button>
+      <button onclick="enviarPresente()">Enviar</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+
 
 
