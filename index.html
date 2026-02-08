@@ -304,13 +304,16 @@ function carregarConvidados() {
       linhas.forEach(linha => {
         const [nome, confirmado] = linha.split(',');
 
-        if (confirmado.trim().toUpperCase() === 'FALSE') {
-          const opt = document.createElement('option');
-          opt.value = nome.trim();
-          opt.textContent = nome.trim();
-          select.appendChild(opt);
+        if (confirmado.trim() === 'False') {
+          const option = document.createElement('option');
+          option.value = nome.trim();
+          option.textContent = nome.trim();
+          select.appendChild(option);
         }
       });
+    })
+    .catch(err => {
+      console.error('Erro ao carregar convidados:', err);
     });
 }
 
@@ -347,9 +350,9 @@ function confirmarPresenca() {
   <div class="popup">
     <h2>Confirme sua presença 💍</h2>
 
-    <label>
+    <label class="field-label">
       Seu nome
-      <select id="listaConvidados"></select>
+      <select class="field-select" id="listaConvidados"></select>
     </label>
 
     <div class="popup-actions">
@@ -381,6 +384,7 @@ function confirmarPresenca() {
 </div>
 </body>
 </html>
+
 
 
 
