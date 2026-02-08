@@ -333,6 +333,41 @@ body {
     margin-top: auto;
 }
 
+/* STATUS DO PRESENTE */
+.gift-status {
+  min-height: 80px;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.gift-buyer {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.gift-message {
+  font-style: italic;
+  color: #777;
+}
+
+/* PLACEHOLDER INVISÍVEL (mantém altura) */
+.gift-placeholder {
+  visibility: hidden;
+}
+
+/* BOTÃO DESABILITADO */
+.btn-disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  border: none;
+}
+
+.btn-disabled:hover {
+  background-color: #ccc;
+}
 
 
 .rsvp-section {
