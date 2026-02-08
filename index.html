@@ -322,12 +322,19 @@ function carregarConvidados() {
 ========================= */
 
 function confirmarPresenca() {
-  const nome = document.getElementById('listaConvidados').value;
+  const select = document.getElementById('listaConvidados');
+  const nome = select.value;
 
   if (!nome) {
     alert('Selecione seu nome');
     return;
   }
+
+  const botao = document.getElementById('btnConfirmarPresenca');
+
+  // feedback imediato
+  botao.textContent = 'Confirmando...';
+  botao.disabled = true;
 
   fetch(RSVP_API_URL, {
     method: 'POST',
@@ -338,13 +345,33 @@ function confirmarPresenca() {
   })
     .then(res => res.text())
     .then(() => {
-      alert('Presença confirmada 💖');
       fecharRSVP();
+      abrirPopupSucesso();
+
+      // remove nome da lista (UX bonito)
+      select.querySelector(`option[value="${nome}"]`)?.remove();
+      select.value = '';
     })
     .catch(() => {
       alert('Erro ao confirmar presença');
+
+      // restaura botão se falhar
+      botao.textContent = 'Confirmar presença';
+      botao.disabled = false;
     });
 }
+    function abrirPopupSucesso() {
+  document.getElementById('popupSucesso').style.display = 'flex';
+}
+
+function fecharPopupSucesso() {
+  document.getElementById('popupSucesso').style.display = 'none';
+
+  const botao = document.getElementById('btnConfirmarPresenca');
+  botao.textContent = 'Confirmar presença';
+  botao.disabled = false;
+}
+    
 </script>
 <div id="popupRSVP" class="popup-overlay" style="display:none">
   <div class="popup">
@@ -357,7 +384,17 @@ function confirmarPresenca() {
 
     <div class="popup-actions">
       <button onclick="fecharRSVP()">Cancelar</button>
-      <button onclick="confirmarPresenca()">Confirmar</button>
+      <button id="btnConfirmarPresenca" onclick="confirmarPresenca()">Confirmar</button>
+    </div>
+  </div>
+</div>
+    <div id="popupSucesso" class="popup-overlay" style="display:none;">
+  <div class="popup">
+    <h2>💖 Presença confirmada!</h2>
+    <p>Ficamos muito felizes em te ver nesse dia especial.</p>
+
+    <div class="popup-actions">
+      <button onclick="fecharPopupSucesso()">Fechar</button>
     </div>
   </div>
 </div>
@@ -384,6 +421,7 @@ function confirmarPresenca() {
 </div>
 </body>
 </html>
+
 
 
 
