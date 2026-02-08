@@ -260,8 +260,104 @@ function enviarPresente() {
 
   window.location.href = url;
 }
-</script>
 
+
+    /* =========================
+   CONFIG RSVP
+========================= */
+
+const RSVP_SHEETS_URL =
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vT6ut7HurFnnkZiObhp2RC6TMSoGAAbR2Z_39SicJYVc32jZ67f-Gu5i7V0EjKovfiGtIuZtXRBKUNb/pub?output=csv';
+
+const RSVP_API_URL =
+  'https://script.google.com/macros/s/AKfycbz7lzI8KMKW2B1a7ddDxK1iIRq_IoPFqGZXIZVILQsjBz_--RydyhbFnDrxVVOxvpN7/exec';
+
+/* =========================
+   ABRIR POPUP
+========================= */
+
+document.querySelector('.rsvp-section .btn').onclick = abrirRSVP;
+
+function abrirRSVP() {
+  document.getElementById('popupRSVP').style.display = 'flex';
+  carregarConvidados();
+}
+
+function fecharRSVP() {
+  document.getElementById('popupRSVP').style.display = 'none';
+}
+
+/* =========================
+   CARREGAR CONVIDADOS
+========================= */
+
+function carregarConvidados() {
+  fetch(RSVP_SHEETS_URL)
+    .then(res => res.text())
+    .then(csv => {
+      const linhas = csv.trim().split('\n');
+      linhas.shift(); // remove cabeçalho
+
+      const select = document.getElementById('listaConvidados');
+      select.innerHTML = '<option value="">Selecione seu nome</option>';
+
+      linhas.forEach(linha => {
+        const [nome, confirmado] = linha.split(',');
+
+        if (confirmado.trim().toUpperCase() === 'FALSE') {
+          const opt = document.createElement('option');
+          opt.value = nome.trim();
+          opt.textContent = nome.trim();
+          select.appendChild(opt);
+        }
+      });
+    });
+}
+
+/* =========================
+   CONFIRMAR PRESENÇA
+========================= */
+
+function confirmarPresenca() {
+  const nome = document.getElementById('listaConvidados').value;
+
+  if (!nome) {
+    alert('Selecione seu nome');
+    return;
+  }
+
+  fetch(RSVP_API_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'confirmar-presenca',
+      nome: nome
+    })
+  })
+    .then(res => res.text())
+    .then(() => {
+      alert('Presença confirmada 💖');
+      fecharRSVP();
+    })
+    .catch(() => {
+      alert('Erro ao confirmar presença');
+    });
+}
+</script>
+<div id="popupRSVP" class="popup-overlay" style="display:none">
+  <div class="popup">
+    <h2>Confirme sua presença 💍</h2>
+
+    <label>
+      Seu nome
+      <select id="listaConvidados"></select>
+    </label>
+
+    <div class="popup-actions">
+      <button onclick="fecharRSVP()">Cancelar</button>
+      <button onclick="confirmarPresenca()">Confirmar</button>
+    </div>
+  </div>
+</div>
 
     <div id="popupPresente" class="popup-overlay">
   <div class="popup">
@@ -285,6 +381,7 @@ function enviarPresente() {
 </div>
 </body>
 </html>
+
 
 
 
