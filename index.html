@@ -170,9 +170,10 @@ fetch(SHEETS_URL)
         headers.map((h, i) => [h.trim(), values[i]?.trim()])
       );
 
-        console.log(data);
-
       const ativo = data.ativo === 'TRUE';
+
+      const pessoa = data.pessoa || '';
+      const mensagem = data.mensagem || '';
 
       const card = document.createElement('div');
       card.className = 'gift-card';
@@ -182,17 +183,41 @@ fetch(SHEETS_URL)
         <h3 class="gift-title">${data.nome}</h3>
         <p class="gift-description">${data.descricao}</p>
         <p class="gift-price">R$ ${parseFloat(data.preco).toFixed(2)}</p>
+
+        <div class="gift-status">
+          ${
+            ativo
+              ? `
+                <p class="gift-placeholder">&nbsp;</p>
+                <p class="gift-placeholder">&nbsp;</p>
+              `
+              : `
+                <p class="gift-buyer">
+                  🎁 Presente dado por <strong>${pessoa}</strong>
+                </p>
+                <p class="gift-message">
+                  “${mensagem || 'Sem mensagem'}”
+                </p>
+              `
+          }
+        </div>
       `;
 
       const btn = document.createElement('button');
-      btn.className = 'btn btn-primary';
+
+      btn.className = ativo
+        ? 'btn btn-primary'
+        : 'btn btn-disabled';
+
       btn.textContent = ativo
         ? 'Comprar este presente'
-        : 'Presente indisponível';
+        : 'Presente já comprado';
 
       btn.disabled = !ativo;
 
-      btn.onclick = () => comprarPresente(data);
+      if (ativo) {
+        btn.onclick = () => comprarPresente(data);
+      }
 
       card.appendChild(btn);
       giftsContainer.appendChild(card);
@@ -219,8 +244,7 @@ function fecharPopup() {
 
 function enviarPresente() {
   const pessoa = document.getElementById('nomePessoa').value.trim();
-  const mensagem =
-    document.getElementById('mensagemPessoa').value.trim();
+  const mensagem = document.getElementById('mensagemPessoa').value.trim();
 
   if (!pessoa) {
     alert('Por favor, digite seu nome');
@@ -237,6 +261,7 @@ function enviarPresente() {
   window.location.href = url;
 }
 </script>
+
 
     <div id="popupPresente" class="popup-overlay">
   <div class="popup">
@@ -260,6 +285,7 @@ function enviarPresente() {
 </div>
 </body>
 </html>
+
 
 
 
