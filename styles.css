@@ -48,7 +48,7 @@ body {
 }
 
 .sdn-menu.desktop a:hover {
-    color: #e2799b;
+    color: #87CEFA;
 }
 
 /* Topo / Header Visual */
@@ -98,14 +98,14 @@ body {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #e2799b;
+    color: #87CEFA;
     font-weight: 700;
 }
 
 .wed-info .border {
     width: 100px;
     height: 2px;
-    background: #e2799b;
+    background: #87CEFA;
     margin: 15px auto 0;
 }
 
@@ -233,7 +233,7 @@ body {
 
 .gift-price {
     font-size: 16px;
-    color: #e2799b;
+    color: #87CEFA;
     font-weight: 700;
     margin-bottom: 15px;
 }
@@ -254,7 +254,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #e2799b;
+    background-color: #87CEFA;
     color: #fff;
 }
 
