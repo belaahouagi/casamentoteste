@@ -68,21 +68,21 @@ body {
 }
 
 .sdn-topo .wrapper {
-    margin-top: -100px;
+    margin-top: -350px;
     position: relative;
     z-index: 2;
 }
 
 .wed-couple-name {
     font-family: 'Libre Baskerville', serif;
-    font-size: 48px;
+    font-size: 30px;
     color: #404951;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 12px;
 }
 
 .wed-couple-name .and {
@@ -91,7 +91,7 @@ body {
 }
 
 .wed-info {
-    margin-top: 30px;
+    margin-top: 300px;
 }
 
 .wed-info .date {
@@ -147,7 +147,7 @@ body {
 /* Foto Extra */
 .section-foto-extra1 {
     height: 400px;
-    background-image: url('./images/casal-praia.png');
+    background-image: url('casal-praia.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -322,6 +322,10 @@ body {
 /* Navbar Mobile */
 .visible-xs {
     display: none;
+}
+
+.section-text {
+padding: 20px;
 }
 
 @media (max-width: 768px) {
