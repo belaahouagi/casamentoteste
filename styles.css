@@ -17,6 +17,67 @@ body {
     line-height: 1.6;
 }
 
+.carrossel {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    overflow: hidden;
+}
+
+.carrossel-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carrossel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 500px;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* mantém todas do mesmo tamanho */
+    display: block;
+    border-radius: 12px;
+}
+
+/* Botões */
+.carrossel .btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.carrossel .btn:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .slide {
+        height: 300px;
+    }
+}
+
 /* Menu Desktop (Casar.com Style) */
 .sdn-menu.desktop {
     background: #fff;
@@ -147,7 +208,7 @@ body {
 /* Foto Extra */
 .section-foto-extra1 {
     height: 400px;
-    background-image: url('./images/casal-praia.png');
+    background-image: url('casal-praia.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
