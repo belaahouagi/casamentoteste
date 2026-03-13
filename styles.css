@@ -174,7 +174,7 @@ body {
 /* Foto Extra */
 .section-foto-extra1 {
     height: 400px;
-    background-image: url('/imgs/casal-praia.png');
+    background-image: url('casal-praia.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
